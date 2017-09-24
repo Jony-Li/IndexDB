@@ -1,0 +1,97 @@
+<!doctype html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>Document</title>
+    <script src="IndexDBUtils.js"></script>
+    </head>
+    <body>
+    <button onclick="initDB()">创建数据库</button><br>
+    <button onclick="addData()">添加数据</button><br>
+    <button onclick="addData02()">添加数据02</button><br>
+    <button onclick="getDataById()">根据ID查询数据</button><br>
+    <button onclick="indexGetDataByName()">根据索引来获取数据</button><br>
+    <button onclick="indexOpenCursor()">索引和游标联合查询</button><br>
+    <button onclick="closeDB()">关闭数据库</button><br>
+    <button onclick="deleteDB()">删除数据库</button>
+
+
+    <script type="text/javascript">
+
+     function initDB(){
+      IndexDBUtils.initDB('DBDemo',22,'students','id');
+    };
+
+    function addData(){
+    IndexDBUtils.addData(IndexDBUtils.database,'students',students);
+    }
+
+    function addData02(){
+    IndexDBUtils.addData(IndexDBUtils.database,'students',students02);
+    }
+    function getDataById(){
+        // data数据是异步返回的
+        var data = IndexDBUtils.getDataById(IndexDBUtils.database,'students',3);
+        console.log(data);//undefined
+    }
+
+    function indexGetDataByName(){
+        //data 数据是异步返回的
+        let data = IndexDBUtils.indexGetDataByName(IndexDBUtils.database,'students','nameIndex','Byron');
+        console.log(data);//undefined
+    }
+
+    function indexOpenCursor(){
+        IndexDBUtils.indexOpenCursor(IndexDBUtils.database,'students','nameIndex');
+    }
+
+    function closeDB(){
+        IndexDBUtils.closeDB(IndexDBUtils.database);
+    }
+
+    var students=[{ 
+        id:1001, 
+        name:"Byron", 
+        age:24 
+    },{ 
+        id:1002, 
+        name:"Frank", 
+        age:30 
+    },{ 
+        id:1003, 
+        name:"Aaron", 
+        age:26 
+    },{ 
+        id:1004, 
+        name:"Casper", 
+        age:26 
+    },{ 
+        id:1005, 
+        name:"Casper001", 
+        age:26 
+    },{ 
+        id:1006, 
+        name:"Casper002", 
+        age:26 
+    }]; 
+
+
+    var students02=[{ 
+        id:1009, 
+        name:"Test001", 
+        age:24 
+    },{ 
+        id:1010, 
+        name:"Test002", 
+        age:30 
+    }]; 
+
+    console.log((!(~+[])+{})[--[~+""][+[]]*[~+[]] + ~~!+[]]+({}+[])[[~!+[]]*~+[]]);
+    </script>
+
+    </body>
+</html>
