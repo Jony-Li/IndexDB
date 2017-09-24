@@ -28,6 +28,7 @@ var IndexDBUtils = {
 				//必须在数据库初始化(onupgradeneeded)创建索引……
 				//nameIndex:索引名称;name:索引对应表的字段名;unique:索引是否唯一
 				objectStore.createIndex('nameIndex','name',{unique:true});
+				objectStore.createIndex('nameAge','age',{unique:false});
 			}
 		};
 	},
@@ -108,6 +109,17 @@ var IndexDBUtils = {
 		request.onerror = ((event)=>{
 			console.error('indexOpenCursor error:', event.target.errorCode || event.target.error);
 		});
+	},
+	//对象存储了所有索引 获取库(表)名创建的索引
+	indexNames:function(db,storeName){
+		let transaction = db.transaction(storeName,'readwrite');
+		let store = transaction.objectStore(storeName);
+		let indexNames = store.indexNames;
+		let index,i = 0,len = indexNames.length;
+		while (i < len) {
+			index = store.index(indexNames[i++]);
+			console.log(index);
+		}
 	},
 /*	console.log('----------------------');
 	console.log("initDb ...");

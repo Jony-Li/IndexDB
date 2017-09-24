@@ -16,6 +16,7 @@
     <button onclick="getDataById()">根据ID查询数据</button><br>
     <button onclick="indexGetDataByName()">根据索引来获取数据</button><br>
     <button onclick="indexOpenCursor()">索引和游标联合查询</button><br>
+    <button onclick="indexNames()">获取库索引</button><br>
     <button onclick="closeDB()">关闭数据库</button><br>
     <button onclick="deleteDB()">删除数据库</button>
 
@@ -43,6 +44,10 @@
         //data 数据是异步返回的
         let data = IndexDBUtils.indexGetDataByName(IndexDBUtils.database,'students','nameIndex','Byron');
         console.log(data);//undefined
+    }
+
+    function indexNames(){
+        IndexDBUtils.indexNames(IndexDBUtils.database,'students');
     }
 
     function indexOpenCursor(){
