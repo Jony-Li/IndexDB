@@ -124,6 +124,13 @@
 	 	});
 	 },
 
+	 getAll:function(){
+	 	return this.withStoreRequest('getAll').then((alarms) => {
+	 		//TODO
+	 		return alarms.map(() => {});
+	 	});
+	 }
+
 	 get:function(id){
 	 	//模拟数据 JSON
 	 	var Alarm =  {
@@ -138,11 +145,14 @@
 	 		snooze:1,
 	 	};
 	 	return this.withStoreRequest('get',id).then((data) => {
-	 		console.log('-----------------');
 	 		console.log(data);
 	 	});
+	 },
+
+	 delete:function(id){
+	 	return this.withStoreRequest('delete',id);
 	 }
-	}
+	};
 
 	function objectStoreGetAll(objectStore){
 		return new Promise((resolve, reject) => {
