@@ -1,2 +1,2 @@
-# IndexDB
-Introduce indexDB of HTML5
+# IndexedDB
+Introduce indexedDB of HTML5
